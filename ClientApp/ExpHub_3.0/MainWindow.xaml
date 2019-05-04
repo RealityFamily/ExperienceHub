@@ -1,0 +1,94 @@
+﻿<Window x:Class="ExpHub_3._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:ExpHub_3._0.Properties"
+        mc:Ignorable="d" Height="450" Width="800" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized">
+	<!--Style="{DynamicResource WindowStyle}">-->
+    <Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40" x:Name="First_Column"/>
+			<ColumnDefinition x:Name="Content_Column"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid Background="Orange" Width="40" HorizontalAlignment="Left" x:Name="NavigationMenu" Grid.Column="0">
+            <StackPanel>
+
+                <Button Background="Orange" BorderThickness="0" Height="40" Click="Button_Click" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Resources/Images/Hamburger_icon.png" Stretch="Fill" Margin="10" />
+                        <TextBlock Visibility="Collapsed" x:Name="Lable" Text="Experience Hub" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Margin="0, 10, 0, 0">
+
+                    <TextBlock Visibility="Collapsed" x:Name="Lesson" Text="{x:Static res:Resources.Lessons}" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" Padding="10"/>
+
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_4">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/Images/Library_icon.png" Stretch="Fill" Margin="10"/>
+                            <TextBlock Visibility="Collapsed" x:Name="Library" Text="{x:Static res:Resources.Library}" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_5">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/Images/Shop_icon.png" Stretch="Fill" Margin="10"/>
+                            <TextBlock Visibility="Collapsed" x:Name="Shop" Text="{x:Static res:Resources.Shop}" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/Images/Upload_icon.png" Stretch="Fill" Margin="10"/>
+                            <TextBlock Visibility="Collapsed" x:Name="Upload" Text="{x:Static res:Resources.Add_Video}" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Margin="0, 10, 0, 0">
+
+                    <TextBlock Visibility="Collapsed" x:Name="Messages" Text="{x:Static res:Resources.Messages}" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" Padding="10"/>
+
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/Images/Library_icon.png" Stretch="Fill" Margin="10"/>
+                            <TextBlock Visibility="Collapsed" x:Name="My_Messages" Text="{x:Static res:Resources.My_messages}" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/Images/Shop_icon.png" Stretch="Fill" Margin="10"/>
+                            <TextBlock Visibility="Collapsed" x:Name="Dialogs" Text="{x:Static res:Resources.Chat}" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0, 10, 0, 0" VerticalAlignment="Bottom">
+                <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Resources/Images/Library_icon.png" Stretch="Fill" Margin="10"/>
+                        <TextBlock Visibility="Collapsed" x:Name="Account" Text="{x:Static res:Resources.Account}" VerticalAlignment="Center" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_3">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Resources/Images/Shop_icon.png" Stretch="Fill" Margin="10"/>
+                        <TextBlock Visibility="Collapsed" x:Name="Settings" Text="{x:Static res:Resources.Settings}" VerticalAlignment="Center" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+				<Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_2">
+					<StackPanel Orientation="Horizontal">
+						<Image Source="Resources/Images/Shop_icon.png" Stretch="Fill" Margin="10"/>
+						<TextBlock Visibility="Collapsed" x:Name="Close" Text="{x:Static res:Resources.Close}" VerticalAlignment="Center" Foreground="Black"/>
+					</StackPanel>
+				</Button>
+			</StackPanel>
+        </Grid>
+
+		<Frame x:Name="Content" Grid.Column="1"/>
+	</Grid>
+</Window>
