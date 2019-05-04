@@ -18,32 +18,59 @@ using System.Windows.Shapes;
 namespace ExpHub_3._0
 {
     /// <summary>
-    /// Логика взаимодействия для Library.xaml
+    /// Логика взаимодействия для Shop.xaml
     /// </summary>
-    public partial class Library : Page
+    public partial class Shop : Page
     {
         public List<Lesson> lessons;
         public List<string> SortVer { get; set; }
         public Dictionary<string, List<string>> tr { get; set; }
+        Person person;
         bool open = false;
 
-
-        public Library()
+        public Shop()
         {
             InitializeComponent();
 
             SortVer = new List<string> { Properties.Resources.Alphabet, Properties.Resources.BuyDate, Properties.Resources.RecordDate };
 
-            tr = Network.Deserialize <Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
+            tr = Network.Deserialize<Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
 
             Update();
-            Place();
+        }
+
+        private async void Update()
+        {
+            if (Properties.Settings.Default.Person != "")
+            {
+                 person = Network.Deserialize<Person>(Properties.Settings.Default.Person);
+
+                try
+                {
+                    var json = await Network.Response(null, "application/json", Properties.Settings.Default.URI + "api/account/" + person.userid.ToString() + "/shop", HttpMethod.Get);
+                    lessons = Network.Deserialize<List<Lesson>>(json.answer);
+                    Place();
+                }
+                catch (Exception e)
+                {
+                    TextBlock error = new TextBlock { Text = Properties.Resources.ConnectionError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
+                    LibraryGrid.Children.Add(error);
+                }
+            }
+            else
+            {
+                TextBlock error = new TextBlock { Text = Properties.Resources.AccountError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };
+                LibraryGrid.Children.Add(error);
+                Grid.SetColumnSpan(error, 6);
+            }
         }
 
         private void Place()
         {
             if (Properties.Settings.Default.Person != "" && lessons != null)
             {
+                LibraryGrid.Children.Clear();
+
                 int a = (int)((FirstColumn.Width.Value - 40) / 340);
 
                 LibraryGrid.ColumnDefinitions.Clear();
@@ -54,13 +81,13 @@ namespace ExpHub_3._0
                 }
 
                 LibraryGrid.RowDefinitions.Add(new RowDefinition());
-
-                for (int i = 0; i < lessons.Count; i++)
+                
+                for (int i = 0; i <= lessons.Count / a ; i++)
                 {
                     int j;
-                    for (j = 0; j < a && j < lessons.Count; j++)
+                    for (j = 0; j < a && (j + i * a) < lessons.Count; j++)
                     {
-                        Border border = PasteCard(lessons[j]);
+                        Border border = PasteCard(lessons[j + i*a]);
                         LibraryGrid.Children.Add(border);
                         Grid.SetColumn(border, j);
                         Grid.SetRow(border, i);
@@ -107,8 +134,7 @@ namespace ExpHub_3._0
                 Desription.Text = lesson.Description;
                 Price.Text = Properties.Resources.Price + ": " + lesson.Price.ToString();
                 Creator.Text = Properties.Resources.Creator + ": " + lesson.Creator;
-                RealiseData.Text = Properties.Resources.RecordDate + ": " + lesson.ReleaseDate.ToString();
-                PurchaseData.Text = Properties.Resources.BuyDate + ": " + lesson.PurchaseDate.ToString();
+                RealiseData.Text = Properties.Resources.RecordDate + ": " + lesson.ReleaseDate.ToString("dd MMMM yyyy");
 
                 if (!open)
                 {
@@ -116,22 +142,23 @@ namespace ExpHub_3._0
                     {
                         SecondColums.Width = new GridLength(SecondColums.Width.Value + 1, GridUnitType.Pixel);
                         FirstColumn.Width = new GridLength(FirstColumn.Width.Value - 1, GridUnitType.Pixel);
-                        if (SecondColums.Width.Value % 20 == 0)
+                        if (SecondColums.Width.Value % 30 == 0)
                         {
                             await Task.Delay(1);
                         }
+                        //Place();
                     }
-                }
-                else
+                } else
                 {
                     while (SecondColums.Width.Value > 0)
                     {
                         SecondColums.Width = new GridLength(SecondColums.Width.Value - 1, GridUnitType.Pixel);
                         FirstColumn.Width = new GridLength(FirstColumn.Width.Value + 1, GridUnitType.Pixel);
-                        if (SecondColums.Width.Value % 20 == 0)
+                        if (SecondColums.Width.Value % 30 == 0)
                         {
                             await Task.Delay(1);
                         }
+                        //Place();
                     }
                 }
 
@@ -139,48 +166,32 @@ namespace ExpHub_3._0
 
                 open = !open;
 
-                
+                Buy.Click += async (sender1, e1) =>
+                {
+                    Lesson new_lesson = new Lesson();
+                    new_lesson.LessonID = lesson.LessonID;
+                    new_lesson.Price = lesson.Price;
+                    var content = new StringContent(Network.Serialize(new_lesson));
+                    
+                    await Network.Response(content, "application/json", Properties.Settings.Default.URI + "api/account/" + person.userid.ToString() + "/lessons/purchase", HttpMethod.Post);
+
+                    Update();
+                };
             };
 
             return border;
         }
 
-        private void Update()
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Properties.Settings.Default.Person != "")
+            if ((sender as ComboBox).SelectedValue != null)
             {
-                Person person = Network.Deserialize<Person>(Properties.Settings.Default.Person);
-
-                try
-                {
-                    var json = Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/account/" + person.userid.ToString() + "/get_my_lessons", HttpMethod.Get);
-                    lessons = Network.Deserialize<List<Lesson>>(json.answer);
-                    for (int i = 0; i < lessons.Count && i < person.Lessons.Count; i++)
-                    {
-                        person.Lessons[i].Name = lessons[i].Name;
-                        person.Lessons[i].Creator = lessons[i].Creator;
-                        person.Lessons[i].Description = lessons[i].Description;
-                        person.Lessons[i].LessonID = lessons[i].LessonID;
-                        person.Lessons[i].Path = lessons[i].Path;
-                        person.Lessons[i].Picture = lessons[i].Picture;
-                        person.Lessons[i].ReleaseDate = lessons[i].ReleaseDate;
-                        person.Lessons[i].PurchaseDate = lessons[i].PurchaseDate;
-                    }
-
-                    Properties.Settings.Default.Person = Network.Serialize(person);
-                    lessons = person.Lessons;
-                    Place();
-                }
-                catch (Exception e)
-                {
-                    TextBlock error = new TextBlock { Text = Properties.Resources.ConnectionError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
-                    LibraryGrid.Children.Add(error);
-                }
+                SubCategory.Visibility = Visibility.Visible;
+                SubCategory.ItemsSource = tr[(sender as ComboBox).SelectedValue.ToString()];
             }
             else
             {
-                TextBlock error = new TextBlock { Text = Properties.Resources.AccountError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };
-                LibraryGrid.Children.Add(error);
+                SubCategory.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -188,18 +199,5 @@ namespace ExpHub_3._0
         {
             Update();
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if ((sender as ComboBox).SelectedValue != null) {
-                SubCategory.Visibility = Visibility.Visible;
-                SubCategory.ItemsSource = tr[(sender as ComboBox).SelectedValue.ToString()];
-            } else
-            {
-                SubCategory.Visibility = Visibility.Collapsed;
-            }
-        }
-
-
     }
 }

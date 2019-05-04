@@ -12,7 +12,7 @@
 
 	<Grid HorizontalAlignment="Stretch">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition x:Name="FirstColumn" Width="800"/>
+			<ColumnDefinition x:Name="FirstColumn" Width="1880"/>
 			<ColumnDefinition x:Name="SecondColums" Width="0"/>
 		</Grid.ColumnDefinitions>
 
@@ -31,7 +31,7 @@
 
 				<Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Refresh}" Click="Button_Click"/>
 			</StackPanel>
-			<Grid Grid.Column="0" Margin="20" x:Name="LibraryGrid" Background="Red"/>
+			<Grid Grid.Column="0" Margin="20" x:Name="LibraryGrid"/>
 		</StackPanel>
 		<Grid Grid.Column="1" Style="{DynamicResource GridStyle}">
 			<StackPanel VerticalAlignment="Center">

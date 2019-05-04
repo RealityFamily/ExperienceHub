@@ -203,6 +203,9 @@ ExperenceHub</value>
   <data name="Launch" xml:space="preserve">
     <value>Запустить</value>
   </data>
+  <data name="LessonName" xml:space="preserve">
+    <value>Название урока:</value>
+  </data>
   <data name="Lessons" xml:space="preserve">
     <value>Уроки</value>
   </data>
@@ -287,6 +290,9 @@ ExperenceHub</value>
   <data name="Sort" xml:space="preserve">
     <value>Отсортировать: </value>
   </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Подкатегория: </value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Цветовая гамма приложения</value>
   </data>
@@ -306,6 +312,6 @@ ExperenceHub</value>
     <value>Название урока</value>
   </data>
   <data name="VideoPrice" xml:space="preserve">
-    <value>Стоимость урока</value>
+    <value>Стоимость урока:</value>
   </data>
 </root>

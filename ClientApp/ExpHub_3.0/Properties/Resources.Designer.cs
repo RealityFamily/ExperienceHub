@@ -19,7 +19,7 @@ namespace ExpHub_3._0.Properties {
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -315,6 +315,15 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Название урока:.
+        /// </summary>
+        public static string LessonName {
+            get {
+                return ResourceManager.GetString("LessonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Уроки.
         /// </summary>
         public static string Lessons {
@@ -567,6 +576,15 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подкатегория: .
+        /// </summary>
+        public static string SubCategory {
+            get {
+                return ResourceManager.GetString("SubCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Цветовая гамма приложения.
         /// </summary>
         public static string Theme {
@@ -621,7 +639,7 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Стоимость урока.
+        ///   Ищет локализованную строку, похожую на Стоимость урока:.
         /// </summary>
         public static string VideoPrice {
             get {

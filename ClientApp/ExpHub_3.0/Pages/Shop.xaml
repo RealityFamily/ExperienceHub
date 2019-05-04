@@ -11,7 +11,7 @@
 	  Style="{DynamicResource PageStyle}">
 
 	<ScrollViewer>
-		<Grid HorizontalAlignment="Stretch">
+		<Grid HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Name="FirstColumn" Width="1880"/>
 				<ColumnDefinition x:Name="SecondColums" Width="0"/>
@@ -21,20 +21,20 @@
 				<StackPanel Orientation="Horizontal" Margin="0, 0, 0, 30">
 					<StackPanel Orientation="Horizontal" Margin="0, 0, 30, 0" VerticalAlignment="Center">
 						<TextBlock Style="{DynamicResource TextBlockStyle}" Text="{x:Static res:Resources.Sort}"/>
-						<ComboBox ItemsSource="{Binding SortVer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Library}}}" />
+						<ComboBox ItemsSource="{Binding SortVer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Shop}}}" />
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" Margin="0, 0, 30, 0">
 						<TextBlock Style="{DynamicResource TextBlockStyle}" Text="{x:Static res:Resources.Category}" Margin="0, 0, 20, 0"/>
-						<ComboBox ItemsSource="{Binding tr.Keys, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Library}}}" Margin="0, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
+						<ComboBox ItemsSource="{Binding tr.Keys, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Shop}}}" Margin="0, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
 						<ComboBox x:Name="SubCategory" Margin="0, 0, 10, 0" Visibility="Collapsed"/>
 					</StackPanel>
 
 					<Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Refresh}" Click="Button_Click"/>
 				</StackPanel>
-				<Grid Grid.Column="0" Margin="20" x:Name="LibraryGrid"/>
+				<Grid Grid.Column="0" Margin="20" x:Name="LibraryGrid" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 			</StackPanel>
-			<Grid Grid.Column="1" Style="{DynamicResource GridStyle}">
+			<Grid Grid.Column="1" Style="{DynamicResource GridStyle}" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Disabled">
 				<StackPanel VerticalAlignment="Center">
 					<Image Width="180" Height="112" Margin="10"/>
 					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Name" Margin="10"/>
@@ -42,7 +42,6 @@
 					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Price" Margin="10"/>
 					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Creator" Margin="10"/>
 					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="RealiseData" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="PurchaseData" Margin="10"/>
 					<StackPanel Orientation="Horizontal" Margin="10">
 						<Button Style="{DynamicResource InvButtonStyle}" x:Name="Buy" Content="{x:Static res:Resources.Buy}"/>
 					</StackPanel>

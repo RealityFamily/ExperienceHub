@@ -81,8 +81,8 @@ namespace ExpHub_3._0
             browserDialog.ShowNewFolderButton = true;
             if (browserDialog.ShowDialog() == winForm.DialogResult.OK)
             {
-                Load_Path.Text = browserDialog.SelectedPath;
-                Properties.Settings.Default.Load_Path = browserDialog.SelectedPath;
+                Unity_Path.Text = browserDialog.SelectedPath;
+                Properties.Settings.Default.Unity_Path = browserDialog.SelectedPath;
                 Properties.Settings.Default.Save();
             }
         }
@@ -94,8 +94,8 @@ namespace ExpHub_3._0
             browserDialog.ShowNewFolderButton = true;
             if (browserDialog.ShowDialog() == winForm.DialogResult.OK)
             {
-                Unity_Path.Text = browserDialog.SelectedPath;
-                Properties.Settings.Default.Unity_Path = browserDialog.SelectedPath;
+                Load_Path.Text = browserDialog.SelectedPath;
+                Properties.Settings.Default.Load_Path = browserDialog.SelectedPath;
                 Properties.Settings.Default.Save();
             }
         }

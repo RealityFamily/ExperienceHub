@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpHub_3._0.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -131,6 +132,12 @@ namespace ExpHub_3._0
         {
             Content.JournalOwnership = JournalOwnership.UsesParentJournal;
             Content.Navigate(new Shop());
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Content.JournalOwnership = JournalOwnership.UsesParentJournal;
+            Content.Navigate(new LoadLesson());
         }
     }
 }

@@ -40,7 +40,7 @@
                             <TextBlock Visibility="Collapsed" x:Name="Shop" Text="{x:Static res:Resources.Shop}" VerticalAlignment="Center" Foreground="Black"/>
                         </StackPanel>
                     </Button>
-                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left">
+                    <Button Height="40" Background="Orange" BorderThickness="0" HorizontalAlignment="Left" Click="Button_Click_6">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Resources/Images/Upload_icon.png" Stretch="Fill" Margin="10"/>
                             <TextBlock Visibility="Collapsed" x:Name="Upload" Text="{x:Static res:Resources.Add_Video}" VerticalAlignment="Center" Foreground="Black"/>
