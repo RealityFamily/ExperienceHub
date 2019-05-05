@@ -11,9 +11,10 @@ using VRTeleportator;
 namespace VRTeleportator.Migrations
 {
     [DbContext(typeof(AppDataBase))]
-    partial class AppDataBaseModelSnapshot : ModelSnapshot
+    [Migration("20190504185259_ctegory")]
+    partial class ctegory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -9,36 +9,34 @@ using System;
 
 namespace VRTeleportator.Controllers
 {
-    [Produces("application/json")]
+    //[Produces("application/json")]
     [Route("api/file")]
     public class FileController : Controller
     {
-        //private readonly IHostingEnvironment environment;
-        //private readonly AppDataBase context;
+        private readonly IHostingEnvironment environment;
+        private readonly AppDataBase context;
 
-        //public FileController(IHostingEnvironment environment, AppDataBase context)
-        //{
-        //    this.environment = environment;
-        //    this.context = context;
-        //}
+        public FileController(IHostingEnvironment environment, AppDataBase context)
+        {
+            this.environment = environment;
+            this.context = context;
+        }
 
         [HttpPost]
-        [Route("upload")]
-        public async Task<IActionResult> UploadFile(Guid LessonId)
+        [Route("{LessonId}/upload")]
+        public async Task<IActionResult> UploadFile(IFormFile uploadedFile, Guid LessonId)
         {
-            //var result = context.Lessons.Find(LessonId);
-            //var path = uploadedFile.FileName;
+            var result = context.Lessons.Find(LessonId);
+            var path = uploadedFile.FileName;
 
-            using (var fileStream = System.IO.File.OpenWrite(Path.Combine("lol.txt")))
+            using (var fileStream = new FileStream(Path.Combine(environment.WebRootPath, path), FileMode.Create))
             {
-                await HttpContext.Request.Body.CopyToAsync(fileStream);
+                await uploadedFile.CopyToAsync(fileStream);
             }
-           
 
-            //result.Path = path;
-            //await context.SaveChangesAsync();
+            result.Path = path;
+            await context.SaveChangesAsync();
             return Ok();
         }
-        
     }
 }

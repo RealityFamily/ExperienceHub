@@ -18,6 +18,5 @@ namespace VRTeleportator.Models
         public DateTime ReleaseDate { get; set; }
         public DateTime PurchaseDate { get; set; }
         public byte[] Picture { get; set; }
-
     }
 }

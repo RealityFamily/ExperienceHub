@@ -36,6 +36,7 @@ namespace VRTeleportator.Controllers
             this.configuration = configuration;
             this.keyClass = keyClass;
         }
+
         [HttpPost]
         public async Task<IActionResult> Authorize([FromBody]LoginViewModel model)
         {
@@ -80,7 +81,6 @@ namespace VRTeleportator.Controllers
             }
             return BadRequest();
         }
-
 
 
         private ClaimsIdentity GetIdentity(LoginViewModel user)

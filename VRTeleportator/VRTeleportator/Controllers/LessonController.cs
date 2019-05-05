@@ -22,7 +22,9 @@ namespace VRTeleportator.Controllers
         private readonly AppDataBase dbContext;
         private readonly IHostingEnvironment environment;
 
-        public LessonController(UserManager<User> userManager, AppDataBase dbContext, IHostingEnvironment environment)
+        public LessonController(UserManager<User> userManager, 
+            AppDataBase dbContext, 
+            IHostingEnvironment environment)
         {
             this.userManager = userManager;
             this.dbContext = dbContext;

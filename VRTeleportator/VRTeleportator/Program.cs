@@ -18,9 +18,8 @@ namespace VRTeleportator
         }
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://*:5000")
-                .ConfigureAppConfiguration(app =>
-                    app.AddJsonFile("appsettings.Secret.json", false))
+                .UseUrls("http://*:80")
+                .ConfigureAppConfiguration(app => app.AddJsonFile("appsettings.Secret.json", false))
                 .UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
