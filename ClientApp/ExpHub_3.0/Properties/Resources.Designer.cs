@@ -315,6 +315,15 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл урока:.
+        /// </summary>
+        public static string LessonFile {
+            get {
+                return ResourceManager.GetString("LessonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Название урока:.
         /// </summary>
         public static string LessonName {
@@ -437,6 +446,15 @@ namespace ExpHub_3._0.Properties {
         public static string Pause {
             get {
                 return ResourceManager.GetString("Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Превью урока.
+        /// </summary>
+        public static string PhotoLesson {
+            get {
+                return ResourceManager.GetString("PhotoLesson", resourceCulture);
             }
         }
         
@@ -612,7 +630,7 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Описание урока.
+        ///   Ищет локализованную строку, похожую на Описание урока:.
         /// </summary>
         public static string VideoDiscriptionText {
             get {

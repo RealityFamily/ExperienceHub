@@ -24,8 +24,15 @@ namespace ExperenceHubApp
             }
             else
             {
-                request.Content = content;
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue(Content_Type);
+                if (Content_Type == "multipart/form-data")
+                {
+                    request.Content = content;
+                }
+                else
+                {
+                    request.Content = content;
+                    request.Content.Headers.ContentType = new MediaTypeHeaderValue(Content_Type);
+                }
             }
             HttpResponseMessage response = client.SendAsync(request).GetAwaiter().GetResult();
             if (response.StatusCode == HttpStatusCode.OK)

@@ -203,6 +203,9 @@ ExperenceHub</value>
   <data name="Launch" xml:space="preserve">
     <value>Запустить</value>
   </data>
+  <data name="LessonFile" xml:space="preserve">
+    <value>Файл урока:</value>
+  </data>
   <data name="LessonName" xml:space="preserve">
     <value>Название урока:</value>
   </data>
@@ -244,6 +247,9 @@ ExperenceHub</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Приостановить</value>
+  </data>
+  <data name="PhotoLesson" xml:space="preserve">
+    <value>Превью урока</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Цена</value>
@@ -303,7 +309,7 @@ ExperenceHub</value>
     <value>Будете использовать VR?</value>
   </data>
   <data name="VideoDiscriptionText" xml:space="preserve">
-    <value>Описание урока</value>
+    <value>Описание урока:</value>
   </data>
   <data name="VideoLesson" xml:space="preserve">
     <value>Содержание урока</value>
