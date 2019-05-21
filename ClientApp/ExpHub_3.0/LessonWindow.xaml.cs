@@ -1,6 +1,7 @@
 ﻿using ExperenceHubApp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -41,23 +42,25 @@ namespace ExpHub_3._0
 
             Prev.Source = lesson.GetPrev();
 
-            if (Directory.Exists(Path.Combine(Properties.Settings.Default.Load_Path, lesson.Name)))
-            {
-                Status.Text = Properties.Resources.OnPC;
-            } else
-            {
-                Status.Text = Properties.Resources.NotOnPC;
-            }
-
             string mode = Application.Current.Properties["Mode"].ToString();
             switch (mode)
             {
                 case "buy":
                     Buy.Visibility = Visibility.Visible;
+                    Status.Visibility = Visibility.Collapsed;
+                    StatusN.Visibility = Visibility.Collapsed;
                     break;
                 case "load and work":
-                    Download.Visibility = Visibility.Visible;
-                    Launch.Visibility = Visibility.Visible;
+                    if (Directory.Exists(Path.Combine(Properties.Settings.Default.Load_Path, lesson.Name)))
+                    {
+                        Status.Text = Properties.Resources.OnPC;
+                        Launch.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        Status.Text = Properties.Resources.NotOnPC;
+                        Download.Visibility = Visibility.Visible;
+                    }
                     break;
             }
         }
@@ -65,7 +68,7 @@ namespace ExpHub_3._0
         private void Download_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Properties["Lesson"] = lesson;
-            Download download = new Download();
+            Download download = new Download("lesson");
             download.Show();
         }
 
@@ -83,7 +86,13 @@ namespace ExpHub_3._0
 
         private void Launch_Click(object sender, RoutedEventArgs e)
         {
-
+            using (StreamWriter sw = File.CreateText(Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Unity_Path), "settings.txt")))
+            {
+                sw.WriteLine(Properties.Settings.Default.VR); // используют ли VR
+                sw.WriteLine(Path.Combine(Properties.Settings.Default.Load_Path, lesson.Name)); // папка расположения урока
+            }
+            Process.Start(Properties.Settings.Default.Unity_Path);
+            Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

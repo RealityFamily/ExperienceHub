@@ -309,7 +309,7 @@ ExperenceHub</value>
     <value>Цветовая гамма приложения</value>
   </data>
   <data name="Unity_Path" xml:space="preserve">
-    <value>Путь до Unity.exe файла</value>
+    <value>Обновление Unity приложения</value>
   </data>
   <data name="UploadFinished" xml:space="preserve">
     <value>Отправка завершена</value>
@@ -343,5 +343,14 @@ ExperenceHub</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Наличие на компьютере:</value>
+  </data>
+  <data name="UnityNew" xml:space="preserve">
+    <value>Появилось обновление!</value>
+  </data>
+  <data name="UnityOK" xml:space="preserve">
+    <value>Вы используете последнюю версию</value>
+  </data>
+  <data name="UploadNewVer" xml:space="preserve">
+    <value>Отправить новую версию</value>
   </data>
 </root>

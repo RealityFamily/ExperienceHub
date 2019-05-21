@@ -666,11 +666,29 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Путь до Unity.exe файла.
+        ///   Ищет локализованную строку, похожую на Обновление Unity приложения.
         /// </summary>
         public static string Unity_Path {
             get {
                 return ResourceManager.GetString("Unity_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Появилось обновление!.
+        /// </summary>
+        public static string UnityNew {
+            get {
+                return ResourceManager.GetString("UnityNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы используете последнюю версию.
+        /// </summary>
+        public static string UnityOK {
+            get {
+                return ResourceManager.GetString("UnityOK", resourceCulture);
             }
         }
         
@@ -689,6 +707,15 @@ namespace ExpHub_3._0.Properties {
         public static string Uploading {
             get {
                 return ResourceManager.GetString("Uploading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправить новую версию.
+        /// </summary>
+        public static string UploadNewVer {
+            get {
+                return ResourceManager.GetString("UploadNewVer", resourceCulture);
             }
         }
         

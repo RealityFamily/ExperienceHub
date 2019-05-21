@@ -23,8 +23,6 @@ namespace ExpHub_3._0
     {
         public List<string> themes { get; set; }
         public List<string> launguage { get; set; }
-        private bool vr_on = false;
-        private string unity_folder;
 
         public Settings()
         {
@@ -36,10 +34,7 @@ namespace ExpHub_3._0
             {
                 Load_Path.Text = Properties.Settings.Default.Load_Path;
             }
-            if (Properties.Settings.Default.Unity_Path != string.Empty)
-            {
-                Unity_Path.Text = Properties.Settings.Default.Unity_Path;
-            }
+            VR.IsChecked = Properties.Settings.Default.VR;
 
             for (int i = 0; i < themes.Count; i++)
             {
@@ -74,19 +69,6 @@ namespace ExpHub_3._0
             catch (Exception) { }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            winForm.FolderBrowserDialog browserDialog = new winForm.FolderBrowserDialog();
-            browserDialog.RootFolder = Environment.SpecialFolder.MyComputer;
-            browserDialog.ShowNewFolderButton = true;
-            if (browserDialog.ShowDialog() == winForm.DialogResult.OK)
-            {
-                Unity_Path.Text = browserDialog.SelectedPath;
-                Properties.Settings.Default.Unity_Path = browserDialog.SelectedPath;
-                Properties.Settings.Default.Save();
-            }
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             winForm.FolderBrowserDialog browserDialog = new winForm.FolderBrowserDialog();
@@ -102,25 +84,34 @@ namespace ExpHub_3._0
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            if (!vr_on)
-            {
-                Unity_Path_Stack.Visibility = Visibility.Visible;
-                vr_on = !vr_on;
-            } else
-            {
-                Unity_Path_Stack.Visibility = Visibility.Collapsed;
-                vr_on = !vr_on;
-            }
+            Properties.Settings.Default.VR = !Properties.Settings.Default.VR;
+            Properties.Settings.Default.Save();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            Download download = new Download("unity");
+            download.Show();
         }
 
         private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            winForm.OpenFileDialog browserDialog = new winForm.OpenFileDialog();
+            browserDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+            browserDialog.Filter = "ZIP files (*.zip)|*.zip";
+            browserDialog.FilterIndex = 1;
+            browserDialog.RestoreDirectory = true;
+            if (browserDialog.ShowDialog() == winForm.DialogResult.OK)
+            {
+                Unity_Path.Text = browserDialog.FileName;
+                Upload upload = new Upload(browserDialog.FileName);
+                upload.ShowDialog();
+            }
         }
     }
 }

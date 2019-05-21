@@ -7,15 +7,14 @@
         mc:Ignorable="d"
         xmlns:res="clr-namespace:ExpHub_3._0.Properties"
         Title="{x:Static res:Resources.DownloadLesson}" Height="200" Width="300"
-		Style="{DynamicResource WindowStyle}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" WindowStyle="None">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
         <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Status" x:FieldModifier="public"/>
         <ProgressBar x:Name="progressBar" Margin="0, 20, 0, 0" MinWidth="180"/>
         <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0" HorizontalAlignment="Center">
-            <Button x:Name="OK" Content="Ok" Style="{DynamicResource ButtonStyle}" Visibility="Collapsed" Click="OK_Click" Margin="0, 0, 15, 0"/>
-            <Button Content="{x:Static res:Resources.Cancel}" Style="{DynamicResource ButtonStyle}" Click="Button_Click_1" x:Name="Cancel"/>
+            <Button x:Name="OK" Content="OK" Visibility="Collapsed" Click="OK_Click" Margin="0, 0, 15, 0"/>
+            <Button Content="{x:Static res:Resources.Cancel}" Click="Button_Click_1" x:Name="Cancel"/>
         </StackPanel>
     </StackPanel>
 </Window>

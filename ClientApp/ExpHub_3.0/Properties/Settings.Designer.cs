@@ -91,5 +91,17 @@ namespace ExpHub_3._0.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VR {
+            get {
+                return ((bool)(this["VR"]));
+            }
+            set {
+                this["VR"] = value;
+            }
+        }
     }
 }

@@ -5,6 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VRClient.unity
     guid: ab2a3dfb7c4ca6040a4baddc6f767628
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 1b9e596884a52f848b733795ea3fa3e2
+  m_configObjects: {}

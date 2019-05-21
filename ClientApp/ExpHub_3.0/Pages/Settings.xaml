@@ -20,13 +20,16 @@
 						<TextBox  Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Load_Path"/>
 						<Button HorizontalAlignment="Right" Content="{x:Static res:Resources.Choose}" Style="{DynamicResource ButtonStyle}" Margin="10,0,0,0" Click="Button_Click_1"/>
 					</StackPanel>
-					<CheckBox Content="{x:Static res:Resources.UseVR}" Click="CheckBox_Click" Style="{DynamicResource CheckBoxStyle}" Margin="10, 0, 0, 10"/>
-					<StackPanel Orientation="Horizontal" Margin="5" Name="Unity_Path_Stack" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Unity_Status" Margin="0,0,10,0" />
+                        <Button HorizontalAlignment="Right" Content="{x:Static res:Resources.Download}" Style="{DynamicResource ButtonStyle}" Margin="10,0,0,0" Click="Button_Click_2" Visibility="Collapsed" x:Name="DownloadNewVer"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" Name="Unity_Path_Stack">
 						<TextBlock Style="{DynamicResource TextBlockStyle}" Text="{x:Static res:Resources.Unity_Path}" Margin="0,0,10,0" />
 						<TextBox  Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Unity_Path"/>
-						<Button HorizontalAlignment="Right" Content="{x:Static res:Resources.Choose}" Style="{DynamicResource ButtonStyle}" Margin="10,0,0,0" Click="Button_Click"/>
-						<Button HorizontalAlignment="Right" Content="{x:Static res:Resources.Download}" Style="{DynamicResource ButtonStyle}" Margin="10,0,0,0" Click="Button_Click_2"/>
+                        <Button HorizontalAlignment="Right" Content="{x:Static res:Resources.UploadNewVer}" Style="{DynamicResource ButtonStyle}" Margin="10,0,0,0" Click="Button_Click"/>
 					</StackPanel>
+					<CheckBox Content="{x:Static res:Resources.UseVR}" Click="CheckBox_Click" Style="{DynamicResource CheckBoxStyle}" Margin="10, 0, 0, 10" x:Name="VR"/>
 				</StackPanel>
 			</Border>
 

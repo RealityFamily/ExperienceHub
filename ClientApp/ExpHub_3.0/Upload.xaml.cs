@@ -15,10 +15,13 @@ namespace ExpHub_3._0
     public partial class Upload : Window
     {
         private WebClient client = new WebClient();
+        private bool mode;
 
         public Upload()
         {
             InitializeComponent();
+
+            mode = true;
 
             Lesson lesson = (Lesson)Application.Current.Properties["Lesson"];
             string file_path = (string)Application.Current.Properties["File_path"];
@@ -27,6 +30,20 @@ namespace ExpHub_3._0
             client.UploadFileCompleted += Client_UploadFileCompleted;
             Uri uri = new Uri(Properties.Settings.Default.URI + "api/file/" + lesson.LessonID.ToString() + "/upload");
             client.UploadFileAsync(uri, file_path);
+        }
+
+        public Upload(string path)
+        {
+            InitializeComponent();
+
+            mode = false;
+
+            client.UploadProgressChanged += Client_UploadProgressChanged;
+            client.UploadFileCompleted += Client_UploadFileCompleted;
+            Uri uri = new Uri(Properties.Settings.Default.URI + "api/file/upload");
+            client.UploadFileAsync(uri, path);
+
+
         }
 
         private void Client_UploadFileCompleted(object sender, UploadFileCompletedEventArgs e)
@@ -49,9 +66,12 @@ namespace ExpHub_3._0
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            Frame cont = ((MainWindow)Application.Current.MainWindow).Content;
-            cont.JournalOwnership = System.Windows.Navigation.JournalOwnership.UsesParentJournal;
-            cont.Navigate(new Library());
+            if (mode)
+            {
+                Frame cont = ((MainWindow)Application.Current.MainWindow).Content;
+                cont.JournalOwnership = System.Windows.Navigation.JournalOwnership.UsesParentJournal;
+                cont.Navigate(new Library());
+            }
             Close();
         }
 
