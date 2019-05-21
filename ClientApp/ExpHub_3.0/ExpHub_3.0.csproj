@@ -73,11 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Download.xaml.cs">
+      <DependentUpon>Download.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LessonWindow.xaml.cs">
+      <DependentUpon>LessonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Cabinet.xaml.cs">
       <DependentUpon>Cabinet.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\DownloadWindow.xaml.cs">
-      <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Library.xaml.cs">
       <DependentUpon>Library.xaml</DependentUpon>
@@ -97,11 +100,18 @@
     <Compile Include="Pages\Shop.xaml.cs">
       <DependentUpon>Shop.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\Cabinet.xaml">
+    <Compile Include="Upload.xaml.cs">
+      <DependentUpon>Upload.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Download.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DownloadWindow.xaml">
+    <Page Include="LessonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Cabinet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Shop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Upload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,67 @@
+﻿<Window x:Class="ExpHub_3._0.LessonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:ExpHub_3._0.Properties"
+        xmlns:local="clr-namespace:ExpHub_3._0"
+        mc:Ignorable="d"
+        Title="LessonWindow" Height="675" Width="1200"
+        Style="{DynamicResource InvWindowStyle}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image x:Name="Prev" VerticalAlignment="Center" Margin="10" Grid.Column="0"/>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static res:Resources.LessonName}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="0"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Name" Margin="10" Grid.Column="1" Grid.Row="0"/>
+
+            <TextBlock Text="{x:Static res:Resources.VideoDiscriptionText}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="1"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Desription" Margin="10" Grid.Column="1" Grid.Row="1"/>
+
+            <TextBlock Text="{x:Static res:Resources.VideoPrice}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="2"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Price" Margin="10" Grid.Column="1" Grid.Row="2"/>
+
+            <TextBlock Text="{x:Static res:Resources.Creator}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="3"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Creator" Margin="10" Grid.Column="1" Grid.Row="3"/>
+
+            <TextBlock Text="{x:Static res:Resources.RecordDate}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="4"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="RealiseData" Margin="10" Grid.Column="1" Grid.Row="4"/>
+
+            <TextBlock Text="{x:Static res:Resources.BuyDate}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="5"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="PurchaseData" Margin="10" Grid.Column="1" Grid.Row="5"/>
+
+            <TextBlock Text="{x:Static res:Resources.Status}" Style="{DynamicResource TextBlockStyle}" Margin="10" Grid.Column="0" Grid.Row="6"/>
+            <TextBlock Style="{DynamicResource TextBlockStyle}" x:Name="Status" Margin="10" Grid.Column="1" Grid.Row="6"/>
+
+            <StackPanel Orientation="Horizontal" Margin="10" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">
+                <Button Style="{DynamicResource InvButtonStyle}" x:Name="Download" Content="{x:Static res:Resources.DownloadLesson}" Margin="5" Visibility="Collapsed" Click="Download_Click"/>
+                <Button Style="{DynamicResource InvButtonStyle}" x:Name="Launch" Content="{x:Static res:Resources.Launch}" Margin="5" Visibility="Collapsed" Click="Launch_Click"/>
+                <Button Style="{DynamicResource InvButtonStyle}" x:Name="Buy" Content="{x:Static res:Resources.Buy}" Margin="5" Visibility="Collapsed" Click="Buy_Click"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

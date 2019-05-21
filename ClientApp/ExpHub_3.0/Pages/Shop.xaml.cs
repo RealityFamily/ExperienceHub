@@ -1,19 +1,10 @@
 ﻿using ExperenceHubApp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExpHub_3._0
 {
@@ -26,18 +17,25 @@ namespace ExpHub_3._0
         public List<string> SortVer { get; set; }
         public Dictionary<string, List<string>> tr { get; set; }
         Person person;
-        bool open = false;
 
         public Shop()
         {
             InitializeComponent();
 
             SortVer = new List<string> { Properties.Resources.Alphabet, Properties.Resources.BuyDate, Properties.Resources.RecordDate };
+            try
+            {
+                tr = Network.Deserialize<Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
 
-            tr = Network.Deserialize<Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
-
-            Update();
-        }
+                Update();
+            }
+            catch
+            {
+                TextBlock error = new TextBlock { Text = Properties.Resources.ConnectionError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };
+                LibraryGrid.Children.Add(error);
+            }
+        
+    }
 
         private async void Update()
         {
@@ -112,71 +110,23 @@ namespace ExpHub_3._0
                 Margin = new Thickness(20)
             };
 
-            //border.SetResourceReference(Border.BackgroundProperty, "BorderStyle");
-            //border.Content = FindResource("BorderStyle");
-
-            StackPanel panel = new StackPanel();
-            // проверить, когда научимся загружать фотки в бд 
-            //Image image = new Image { Source = GetImage(lesson).GetAwaiter().GetResult() }; 
+            StackPanel panel = new StackPanel(); 
+            Image image = new Image { Source = lesson.GetPrev(), MaxHeight = 180, MaxWidth = 240, Stretch = Stretch.Fill, Margin = new Thickness(0, 5, 0, 5), HorizontalAlignment = HorizontalAlignment.Center}; 
             TextBlock name = new TextBlock { Text = lesson.Name, FontWeight = FontWeights.Bold };
             TextBlock creator = new TextBlock { Text = lesson.Creator, FontSize = 14 };
 
-            //panel.Children.Add(image); 
+            panel.Children.Add(image); 
             panel.Children.Add(name);
             panel.Children.Add(creator);
 
             border.Child = panel;
 
-            border.MouseDown += async (sender, e) => {
-                // проверить, когда научимся загружать фотки в бд 
-                //Picture.Source = GetImage(lesson).GetAwaiter().GetResult(); 
-                Name.Text = lesson.Name;
-                Desription.Text = lesson.Description;
-                Price.Text = Properties.Resources.Price + ": " + lesson.Price.ToString();
-                Creator.Text = Properties.Resources.Creator + ": " + lesson.Creator;
-                RealiseData.Text = Properties.Resources.RecordDate + ": " + lesson.ReleaseDate.ToString("dd MMMM yyyy");
+            border.MouseDown += (sender, e) => {
+                Application.Current.Properties["Lesson"] = lesson;
+                Application.Current.Properties["Mode"] = "buy";
 
-                if (!open)
-                {
-                    while (SecondColums.Width.Value < 340)
-                    {
-                        SecondColums.Width = new GridLength(SecondColums.Width.Value + 1, GridUnitType.Pixel);
-                        FirstColumn.Width = new GridLength(FirstColumn.Width.Value - 1, GridUnitType.Pixel);
-                        if (SecondColums.Width.Value % 30 == 0)
-                        {
-                            await Task.Delay(1);
-                        }
-                        //Place();
-                    }
-                } else
-                {
-                    while (SecondColums.Width.Value > 0)
-                    {
-                        SecondColums.Width = new GridLength(SecondColums.Width.Value - 1, GridUnitType.Pixel);
-                        FirstColumn.Width = new GridLength(FirstColumn.Width.Value + 1, GridUnitType.Pixel);
-                        if (SecondColums.Width.Value % 30 == 0)
-                        {
-                            await Task.Delay(1);
-                        }
-                        //Place();
-                    }
-                }
-
-                Place();
-
-                open = !open;
-
-                Buy.Click += async (sender1, e1) =>
-                {
-                    Lesson new_lesson = new Lesson();
-                    new_lesson.LessonID = lesson.LessonID;
-                    new_lesson.Price = lesson.Price;
-                    var content = new StringContent(Network.Serialize(new_lesson));
-                    
-                    await Network.Response(content, "application/json", Properties.Settings.Default.URI + "api/account/" + person.userid.ToString() + "/lessons/purchase", HttpMethod.Post);
-
-                    Update();
-                };
+                LessonWindow window = new LessonWindow();
+                window.ShowDialog();
             };
 
             return border;

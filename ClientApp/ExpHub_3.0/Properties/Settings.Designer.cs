@@ -61,7 +61,7 @@ namespace ExpHub_3._0.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.58/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.11.162.141/")]
         public string URI {
             get {
                 return ((string)(this["URI"]));

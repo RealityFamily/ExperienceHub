@@ -34,9 +34,16 @@ namespace ExpHub_3._0.Pages
 
             if (Properties.Settings.Default.Person != "")
             {
-                Tr = Network.Deserialize<Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
-                Main_Cont.Visibility = Visibility.Visible;
-            } else
+                try
+                {
+                    Tr = Network.Deserialize<Dictionary<string, List<string>>>(Network.ResponseAwaiter(null, "application/json", Properties.Settings.Default.URI + "api/category", HttpMethod.Get).Item1);
+                    Main_Cont.Visibility = Visibility.Visible;
+                } catch
+                {
+                    TextBlock error = new TextBlock { Text = Properties.Resources.ConnectionError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };
+                    Content.Children.Add(error);
+                }
+        } else
             {
                 TextBlock error = new TextBlock { Text = Properties.Resources.AccountError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };
                 Content.Children.Add(error);
@@ -91,8 +98,9 @@ namespace ExpHub_3._0.Pages
             lesson.Price = float.Parse(Price.Text);
             lesson.Description = Description.Text;
             lesson.CreatorID = person.userid;
+            lesson.Subcategory = SubCategory.SelectedValue.ToString();
 
-            string json = Network.Serialize<Lesson>(lesson);
+            string json = Network.Serialize(lesson);
             HttpContent content = new StringContent(json);
 
             var answer = Network.ResponseAwaiter(content, "application/json", Properties.Settings.Default.URI + "api/lesson/add", HttpMethod.Post);
@@ -100,11 +108,10 @@ namespace ExpHub_3._0.Pages
             {
                 lesson.LessonID = Network.Deserialize<Guid>(answer.answer);
 
-                StreamContent fileContent = new StreamContent(System.IO.File.OpenRead(FilePath));
-                MultipartFormDataContent Fcontent = new MultipartFormDataContent("----WebKitFormBoundary7MA4YWxkTrZu0gW");
-                Fcontent.Add(fileContent, "uploadedFile", System.IO.Path.GetFileName(FilePath));
-
-                Network.ResponseAwaiter(Fcontent, Fcontent.Headers.ContentType.MediaType, Properties.Settings.Default.URI + "api/file/" + lesson.LessonID.ToString() + "/upload", HttpMethod.Post);
+                Application.Current.Properties["Lesson"] = lesson;
+                Application.Current.Properties["File_path"] = FilePath;
+                Upload upload = new Upload();
+                upload.Show();
             } else
             {
                 TextBlock error = new TextBlock { Text = Properties.Resources.ConnectionError, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontSize = 20 };

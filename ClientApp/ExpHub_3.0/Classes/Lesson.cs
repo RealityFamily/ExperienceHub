@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ExperenceHubApp
 {
@@ -9,7 +12,6 @@ namespace ExperenceHubApp
     {
         public string Name;
         public string Path;
-        public string localpath;
         public DateTime PurchaseDate;
         public DateTime ReleaseDate;
         public byte[] Picture;
@@ -21,12 +23,21 @@ namespace ExperenceHubApp
         public string Category;
         public string Subcategory;
 
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
+        public ImageSource GetPrev()
         {
-            if (localpath == null)
+            if (Picture != null) {
+                BitmapImage biImg = new BitmapImage();
+                MemoryStream ms = new MemoryStream(Picture);
+                biImg.BeginInit();
+                biImg.StreamSource = ms;
+                biImg.EndInit();
+
+                ImageSource imgSrc = biImg as ImageSource;
+
+                return imgSrc;
+            } else
             {
-                localpath = localpath;
+                return null;
             }
         }
     }

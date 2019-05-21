@@ -115,7 +115,7 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дата покупки.
+        ///   Ищет локализованную строку, похожую на Дата покупки:.
         /// </summary>
         public static string BuyDate {
             get {
@@ -178,7 +178,7 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка подключения. Проверьте доступ к интернету..
+        ///   Ищет локализованную строку, похожую на Ошибка подключения к серверу..
         /// </summary>
         public static string ConnectionError {
             get {
@@ -187,11 +187,20 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Создатель урока.
+        ///   Ищет локализованную строку, похожую на Создатель урока:.
         /// </summary>
         public static string Creator {
             get {
                 return ResourceManager.GetString("Creator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на руб..
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         
@@ -210,6 +219,24 @@ namespace ExpHub_3._0.Properties {
         public static string Download {
             get {
                 return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка завершена.
+        /// </summary>
+        public static string DownloadFinished {
+            get {
+                return ResourceManager.GetString("DownloadFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загружено.
+        /// </summary>
+        public static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
             }
         }
         
@@ -414,6 +441,24 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не загружен.
+        /// </summary>
+        public static string NotOnPC {
+            get {
+                return ResourceManager.GetString("NotOnPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загружен.
+        /// </summary>
+        public static string OnPC {
+            get {
+                return ResourceManager.GetString("OnPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пароли совпадают.
         /// </summary>
         public static string PassCorrect {
@@ -477,7 +522,7 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дата съемки.
+        ///   Ищет локализованную строку, похожую на Дата съемки:.
         /// </summary>
         public static string RecordDate {
             get {
@@ -594,6 +639,15 @@ namespace ExpHub_3._0.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Наличие на компьютере:.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Подкатегория: .
         /// </summary>
         public static string SubCategory {
@@ -617,6 +671,24 @@ namespace ExpHub_3._0.Properties {
         public static string Unity_Path {
             get {
                 return ResourceManager.GetString("Unity_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправка завершена.
+        /// </summary>
+        public static string UploadFinished {
+            get {
+                return ResourceManager.GetString("UploadFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправлено.
+        /// </summary>
+        public static string Uploading {
+            get {
+                return ResourceManager.GetString("Uploading", resourceCulture);
             }
         }
         

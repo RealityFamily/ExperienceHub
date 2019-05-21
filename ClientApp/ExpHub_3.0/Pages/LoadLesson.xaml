@@ -16,50 +16,67 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Name="Content">
-        <StackPanel Name="Main_Cont" Visibility="Collapsed">
-            <StackPanel Orientation="Horizontal" >
-                <TextBlock Text="{x:Static res:Resources.LessonName}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Name" Margin="10"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.VideoDiscriptionText}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" Margin="10" TextWrapping="Wrap" AcceptsReturn="True" x:Name="Description"/>
-            </StackPanel>
+        <Grid Name="Main_Cont" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.VideoPrice}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Price" Margin="10"/>
+            
+            <TextBlock Text="{x:Static res:Resources.LessonName}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Name" Margin="10" Grid.Row="0" Grid.Column="1"/>
+
+            
+            <TextBlock Text="{x:Static res:Resources.VideoDiscriptionText}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" Margin="10" TextWrapping="Wrap" AcceptsReturn="True" x:Name="Description" Grid.Row="1" Grid.Column="1"/>
+            
+            
+            
+            <TextBlock Text="{x:Static res:Resources.VideoPrice}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="450" x:Name="Price" Margin="10" Grid.Row="2" Grid.Column="1"/>
+            
+
+            
+            <TextBlock Text="{x:Static res:Resources.Category}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+            <ComboBox x:Name="Cat" ItemsSource="{Binding Path=Tr.Keys, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pages:LoadLesson}}}" SelectionChanged="Cat_SelectionChanged" Margin="10" Grid.Row="3" Grid.Column="1"/>
+            
+
+            
+            <TextBlock Text="{x:Static res:Resources.SubCategory}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="4" Grid.Column="0"/>
+            <ComboBox x:Name="SubCategory" Margin="10" Grid.Row="4" Grid.Column="1"/>
+            
+
+            
+            <TextBlock Text="{x:Static res:Resources.PhotoLesson}" Margin="10" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+            <Image Name="Prev" MaxHeight="360" MaxWidth="480" Stretch="Fill" Margin="10" Grid.Row="5" Grid.Column="1"/>
+            <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2">
+                <TextBlock Text="{x:Static res:Resources.Download}" Margin="2" Style="{DynamicResource TextBlockStyle}" Name="PhotoName"/>
+                <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Download}" Click="Button_Click" Margin="2"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.Category}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <ComboBox x:Name="Cat" ItemsSource="{Binding Path=Tr.Keys, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pages:LoadLesson}}}" SelectionChanged="Cat_SelectionChanged" Margin="10"/>
+
+
+
+            <TextBlock Text="{x:Static res:Resources.LessonFile}" Margin="10" Style="{DynamicResource TextBlockStyle}" Grid.Row="6" Grid.Column="0"/>
+            <StackPanel Orientation="Vertical" Margin="10" Grid.Row="6" Grid.Column="2">
+                <TextBlock Text="{x:Static res:Resources.Download}" Margin="2" Style="{DynamicResource TextBlockStyle}" Name="FileName"/>
+                <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Download}" Click="Button_Click_1" Margin="2"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.SubCategory}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <ComboBox x:Name="SubCategory" Margin="10"/>
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.PhotoLesson}" Margin="10" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center"/>
-                <Image Name="Prev" MaxHeight="360" MaxWidth="480" Stretch="Fill" Margin="10"/>
-                <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
-                    <TextBlock Text="{x:Static res:Resources.Download}" Margin="2" Style="{DynamicResource TextBlockStyle}" Name="PhotoName"/>
-                    <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Download}" Click="Button_Click" Margin="2"/>
-                </StackPanel>
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Static res:Resources.LessonFile}" Margin="10" Style="{DynamicResource TextBlockStyle}" />
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="{x:Static res:Resources.Download}" Margin="2" Style="{DynamicResource TextBlockStyle}" Name="FileName"/>
-                    <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.Download}" Click="Button_Click_1" Margin="2"/>
-                </StackPanel>
-            </StackPanel>
-
-            <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.DownloadLesson}" HorizontalAlignment="Center" Margin="7" Click="Button_Click_2"/>
-        </StackPanel>
+            <Button Style="{DynamicResource ButtonStyle}" Content="{x:Static res:Resources.DownloadLesson}" Margin="7" HorizontalAlignment="Center" Click="Button_Click_2" Grid.Row="7" Grid.Column="1"/>
+        </Grid>
     </StackPanel>
 </Page>

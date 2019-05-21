@@ -136,7 +136,7 @@
     <value>Купить</value>
   </data>
   <data name="BuyDate" xml:space="preserve">
-    <value>Дата покупки</value>
+    <value>Дата покупки:</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
@@ -157,16 +157,22 @@
     <value>Повторите пароль</value>
   </data>
   <data name="ConnectionError" xml:space="preserve">
-    <value>Ошибка подключения. Проверьте доступ к интернету.</value>
+    <value>Ошибка подключения к серверу.</value>
   </data>
   <data name="Creator" xml:space="preserve">
-    <value>Создатель урока</value>
+    <value>Создатель урока:</value>
   </data>
   <data name="Directories" xml:space="preserve">
     <value>Путь к файлам и папкам</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Загрузить</value>
+  </data>
+  <data name="DownloadFinished" xml:space="preserve">
+    <value>Загрузка завершена</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Загружено</value>
   </data>
   <data name="DownloadLesson" xml:space="preserve">
     <value>Загрузить урок</value>
@@ -258,7 +264,7 @@ ExperenceHub</value>
     <value>Записать видео</value>
   </data>
   <data name="RecordDate" xml:space="preserve">
-    <value>Дата съемки</value>
+    <value>Дата съемки:</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Обновить</value>
@@ -305,6 +311,12 @@ ExperenceHub</value>
   <data name="Unity_Path" xml:space="preserve">
     <value>Путь до Unity.exe файла</value>
   </data>
+  <data name="UploadFinished" xml:space="preserve">
+    <value>Отправка завершена</value>
+  </data>
+  <data name="Uploading" xml:space="preserve">
+    <value>Отправлено</value>
+  </data>
   <data name="UseVR" xml:space="preserve">
     <value>Будете использовать VR?</value>
   </data>
@@ -319,5 +331,17 @@ ExperenceHub</value>
   </data>
   <data name="VideoPrice" xml:space="preserve">
     <value>Стоимость урока:</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>руб.</value>
+  </data>
+  <data name="NotOnPC" xml:space="preserve">
+    <value>Не загружен</value>
+  </data>
+  <data name="OnPC" xml:space="preserve">
+    <value>Загружен</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Наличие на компьютере:</value>
   </data>
 </root>

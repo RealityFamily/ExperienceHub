@@ -34,19 +34,7 @@
 				</StackPanel>
 				<Grid Grid.Column="0" Margin="20" x:Name="LibraryGrid" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 			</StackPanel>
-			<Grid Grid.Column="1" Style="{DynamicResource GridStyle}" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-				<StackPanel VerticalAlignment="Center">
-					<Image Width="180" Height="112" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Name" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Desription" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Price" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="Creator" Margin="10"/>
-					<TextBlock Text="{x:Static res:Resources.LoadFolder_Path}" Style="{DynamicResource TextBlockStyle}" x:Name="RealiseData" Margin="10"/>
-					<StackPanel Orientation="Horizontal" Margin="10">
-						<Button Style="{DynamicResource InvButtonStyle}" x:Name="Buy" Content="{x:Static res:Resources.Buy}"/>
-					</StackPanel>
-				</StackPanel>
-			</Grid>
+			
 		</Grid>
 	</ScrollViewer>
 </Page>

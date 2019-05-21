@@ -107,8 +107,17 @@ namespace ExpHub_3._0
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Content.JournalOwnership = JournalOwnership.UsesParentJournal;
-            Content.Navigate(new LogIn());
+            if (Properties.Settings.Default.Person != "")
+            {
+                Frame cont = ((MainWindow)Application.Current.MainWindow).Content;
+                cont.JournalOwnership = JournalOwnership.UsesParentJournal;
+                cont.Navigate(new Cabinet());
+            }
+            else
+            {
+                Content.JournalOwnership = JournalOwnership.UsesParentJournal;
+                Content.Navigate(new LogIn());
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
